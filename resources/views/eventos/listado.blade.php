@@ -22,11 +22,31 @@
             <p class="card-text">{{$e->fecha}}</p>
             <p class="card-text">{{$e->hora}}</p>
             <p class="card-text">{{$e->lugar}}</p>
-            <a href="" class="btn btn-primary">Editar</a>
-            <a href="" class="btn btn-primary">eliminar</a>
+            <a href="{{route('editar_eve', $e->codevento)}}" class="btn btn-primary">Editar</a>
+            <a href="{{route('eliminar_eve', $e->codevento)}}" class="btn btn-danger">Borrar</a>
         </div>
         </div>
 @endforeach
+
+<script>
+    function eliminarEvento(event, url) {
+        event.preventDefault();
+
+        Swal.fire({
+            title: '¿Confirma la eliminación del registro?',
+            icon: 'info',
+            showCancelButton: true,
+            confirmButtonColor: '#20c997',
+            cancelButtonColor: '#6c757d',
+            confirmButtonText: 'Confirmar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = url;
+                Swal.fire('¡Eliminado!', 'El registro ha sido eliminado exitosamente.','success');
+            }
+        });
+    }
+</script>
 @stop
 
 @section('css')

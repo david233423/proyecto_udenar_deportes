@@ -33,4 +33,33 @@ class EventosController extends Controller
         $eventos->save();
         return redirect()->route('listado_eventos');
     }
+
+    public function form_edicion($id){
+        $eventos = Events::findorFail($id);
+        return view('eventos.form_edicion', ['events'=>$eventos]);
+    }
+
+    public function editar(Request $request, $id){
+        $eventos = Events::findorFail($id);
+        $eventos->nomevento = $request->input('nom_evento');
+        $eventos->fecha = $request->input('fecha_evento');
+        $eventos->hora = $request->input('hora_evento');
+        $eventos->lugar = $request->input('lugar_evento');
+        if ($request->hasFile('imagen')) {
+            $rutaGuardarImg = 'imagen/';
+            $imagen = date('YmdHis'). "." . $request->file('imagen')->getClientOriginalExtension();
+            $request->file('imagen')->move($rutaGuardarImg, $imagen);
+            $eventos->imagen = $imagen;
+        }
+        
+        $eventos->save();
+        return redirect()->route('listado_eventos');
+    }
+
+    public function eliminar($id){
+        $eventos = Events::findorFail($id);
+        $eventos->delete();
+
+        return redirect()->route('listado_eventos');
+    }
 }
