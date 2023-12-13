@@ -18,14 +18,22 @@
             <label for="nom_evento" class="form-label">Nombre evento</label>
             <input type="text" class="form-control" id="nom_evento" name="nom_evento" value="{{$events->nomevento}}">
         </div>
+        
         <div class="mb-3">
-            <label for="fecha_evento" class="form-label">Fecha Evento</label>
-            <input type="date" class="form-control" id="fecha_evento" name="fecha_evento" value="{{$events->fecha}}">
+            <?php
+            $fechamin = date("Y-m-d")
+            ?>
+            <label for="fecha_evento"  class="form-label">Fecha Evento</label>
+            <input type="date" class="form-control" min="<?= $fechamin; ?>" id="fecha_evento" name="fecha_evento" value="{{$events->fecha}}">
         </div>
         <div class="mb-3">
+            <?php
+            $horamin = date("H:i");
+            ?>
             <label for="hora_evento" class="form-label">Hora Evento</label>
-            <input type="time" class="form-control" id="hora_evento" name="hora_evento" value="{{$events->hora}}">
+            <input type="time" class="form-control" min="<?= $horamin; ?>" id="hora_evento" name="hora_evento" value="{{$events->hora}}">
         </div>
+       
         <div class="mb-3">
             <label for="lugar_evento" class="form-label">Lugar Evento</label>
             <input type="text" class="form-control" id="lugar_evento" name="lugar_evento" value="{{$events->lugar}}">

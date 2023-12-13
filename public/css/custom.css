@@ -1,0 +1,21 @@
+#boton{
+    margin-left: 1100px;
+}
+
+h1 {
+    font-size: 36px;
+    margin: 0;
+    background-color: #0e5526;
+    color: white;
+    text-align: center;
+}
+
+/* Estilo inicial del botón */
+.btn-danger {
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Estilo del botón cuando se hace clic (animación) */
+.btn-danger.clicked {
+    transform: translateX(200px) translateY(-100px); /* Ajusta según tus necesidades */
+}

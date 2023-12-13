@@ -19,12 +19,18 @@
             <input type="text" class="form-control" id="nom_evento" name="nom_evento">
         </div>
         <div class="mb-3">
-            <label for="fecha_evento" class="form-label">Fecha Evento</label>
-            <input type="date" class="form-control" id="fecha_evento" name="fecha_evento">
+            <?php
+            $fechamin = date("Y-m-d")
+            ?>
+            <label for="fecha_evento"  class="form-label">Fecha Evento</label>
+            <input type="date" class="form-control" min="<?= $fechamin; ?>" id="fecha_evento" name="fecha_evento">
         </div>
         <div class="mb-3">
+            <?php
+            $horamin = date("H:i");
+            ?>
             <label for="hora_evento" class="form-label">Hora Evento</label>
-            <input type="time" class="form-control" id="hora_evento" name="hora_evento">
+            <input type="time" class="form-control" min="<?= $horamin; ?>" id="hora_evento" name="hora_evento">
         </div>
         <div class="mb-3">
             <label for="lugar_evento" class="form-label">Lugar Evento</label>

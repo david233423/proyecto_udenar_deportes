@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 use App\Models\Events;
+use Illuminate\Validation\Rule;
 
 class EventosController extends Controller
 {
     public function index(){
-        $eventos = DB::table('eventos')->get(); // select * from facultad
+        $eventos = Events::with('user')->get(); // Utiliza Eloquent con ->with('user') para cargar la relación
         return view('eventos.listado', ['events'=>$eventos]);
     }
 
@@ -17,12 +19,26 @@ class EventosController extends Controller
     }
 
     public function registrar(Request $request){
+        $validator = Validator::make($request->all(), [
+            'cod_evento' => 'required|string',
+            'nom_evento' => 'required|string',
+            'fecha_evento' => 'required|date',
+            'hora_evento' => 'required|date_format:H:i',
+            'lugar_evento' => 'required|string',
+            'imagen' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+    
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
         $eventos = new Events();
         $eventos->codevento = $request->input('cod_evento');
         $eventos->nomevento = $request->input('nom_evento');
         $eventos->fecha = $request->input('fecha_evento');
         $eventos->hora = $request->input('hora_evento');
         $eventos->lugar = $request->input('lugar_evento');
+        $eventos->user_id = auth()->id();
         if ($request->hasFile('imagen')) {
             $rutaGuardarImg = 'imagen/';
             $imagen = date('YmdHis'). "." . $request->file('imagen')->getClientOriginalExtension();
@@ -45,6 +61,7 @@ class EventosController extends Controller
         $eventos->fecha = $request->input('fecha_evento');
         $eventos->hora = $request->input('hora_evento');
         $eventos->lugar = $request->input('lugar_evento');
+        $eventos->user_id = auth()->id();
         if ($request->hasFile('imagen')) {
             $rutaGuardarImg = 'imagen/';
             $imagen = date('YmdHis'). "." . $request->file('imagen')->getClientOriginalExtension();

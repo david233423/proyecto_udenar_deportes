@@ -2,11 +2,11 @@
 
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'Inicio')
 
 @section('content_header')
-    <h1>Dashboard</h1>
-    {{ __('Dashboard') }}
+    <h1>Udenar Deportes</h1>
+    
 @stop
 
 @section('content')

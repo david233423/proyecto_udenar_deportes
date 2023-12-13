@@ -10,4 +10,9 @@ class Events extends Model
     protected $table = 'eventos';
     protected $primaryKey = 'codevento';
     public $timestamps = 'true';
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }
