@@ -10,6 +10,10 @@
     <form action="{{ url('/noticias/registrar') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="mb-3">
+            <label for="cod_evento" class="form-label">Código Noticia</label>
+            <input type="text" class="form-control" id="codigo"  name="codigo" >
+        </div>
+        <div class="mb-3">
             <label for="titulo" class="form-label">Título</label>
             <input type="text" class="form-control" id="titulo" name="titulo">
         </div>

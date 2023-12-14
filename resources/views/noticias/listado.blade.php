@@ -21,13 +21,14 @@
             </div>
             <div class="col-md-8">
                 <div class="card-body">
-                    <h5 class="card-title">{{ $noticia->titulo }} - Autor: {{ $noticia->user->name }}</h5>
+                    <h2 class="card-title">{{ $noticia->titulo }} </h2>
+                    <br><br>
                     <p class="card-text">{{ $noticia->descripcion }}</p>
                     @role('admin')
                     <a href="{{ route('editar_not', $noticia->codigo) }}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
                     <a href="{{ route('eliminar_not', $noticia->codigo) }}" class="btn btn-danger" onclick="eliminarNoticia(event, '{{ route('eliminar_not', $noticia->codigo) }}')"><i class="fas fa-trash"></i></a>
                     @endrole
-                    <a href="{{ route('editar_not', $noticia->id) }}" class="btn btn-success">Leer Más</a>
+                    <a href="{{ route('listado_eventos') }}" class="btn btn-success">Ver mas Informacion</a>
                 </div>
             </div>
         </div>

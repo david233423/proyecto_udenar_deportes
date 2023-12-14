@@ -13,7 +13,7 @@ class NoticiasController extends Controller
         return view('noticias.listado', ['noticias' => $noticias]);
     }
 
-    public function formRegistro()
+    public function form_registro()
     {
         return view('noticias.form_registro');
     }
@@ -21,6 +21,7 @@ class NoticiasController extends Controller
     public function registrar(Request $request)
     {
         $validator = Validator::make($request->all(), [
+            'codigo'=> 'required|string',
             'titulo' => 'required|string',
             'descripcion' => 'required|string',
             'imagen' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -32,6 +33,7 @@ class NoticiasController extends Controller
         }
 
         $noticia = new Noticias();
+        $noticia->codigo = $request->input("codigo");
         $noticia->titulo = $request->input('titulo');
         $noticia->descripcion = $request->input('descripcion');
 
