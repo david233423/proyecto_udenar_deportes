@@ -9,8 +9,8 @@ class NoticiasController extends Controller
 {
     public function index()
     {
-        $noticias = Noticias::all();
-        return view('noticias.listado', ['noticias' => $noticias]);
+        $noticias = Noticias::paginate(3); // numero de paginas.
+        return view('noticias.listado', compact('noticias'));
     }
 
     public function form_registro()
@@ -80,4 +80,6 @@ class NoticiasController extends Controller
 
         return redirect()->route('listado_noticias');
     }
+
+    
 }

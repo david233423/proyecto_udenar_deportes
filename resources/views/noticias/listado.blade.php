@@ -35,6 +35,10 @@
     </div>
 @endforeach
 
+<div class="d-flex justify-content-center">
+    {{ $noticias->links('vendor.pagination.bootstrap-4') }}
+</div>
+
 <script>
     function eliminarNoticia(event, url) {
         event.preventDefault();

@@ -39,6 +39,9 @@
         </div>
 @endforeach
 
+<div class="d-flex justify-content-center">
+    {{ $events->links('pagination::bootstrap-4') }}
+</div>
 
 <script>
     function eliminarEvento(event, url) {

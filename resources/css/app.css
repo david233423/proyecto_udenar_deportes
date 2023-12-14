@@ -5,3 +5,19 @@
 body{
     background-color: aqua;
 }
+
+/* Anular estilos específicos de AdminLTE para enlaces de paginación de Bootstrap */
+.pagination {
+    margin: 0;
+}
+
+.pagination > li {
+    display: inline;
+    margin-right: 5px; /* Ajusta según tus preferencias */
+}
+
+.pagination > li > a,
+.pagination > li > span {
+    border: 1px solid #ddd; /* Ajusta según tus preferencias */
+    padding: 5px 10px; /* Ajusta según tus preferencias */
+}

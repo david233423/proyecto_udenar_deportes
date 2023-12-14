@@ -10,8 +10,8 @@ use Illuminate\Validation\Rule;
 class EventosController extends Controller
 {
     public function index(){
-        $eventos = Events::with('user')->get(); // Utiliza Eloquent con ->with('user') para cargar la relación
-        return view('eventos.listado', ['events'=>$eventos]);
+        $eventos = Events::with('user')->paginate(3); 
+        return view('eventos.listado', ['events' => $eventos]);
     }
 
     public function form_registro(){
