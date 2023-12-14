@@ -57,6 +57,22 @@ Route::get('eventos/eliminar/{id}', [EventosController::class, 'eliminar']
 Route::get('/noticias/listado', [NoticiasController::class,'index']
 )->middleware(['auth', 'verified'])->name('listado_noticias');
 
+Route::get('/noticias/registrar', [NoticiasController::class, 'form_registro']
+)->middleware(['auth', 'verified'])->name('form_registro_not');
+
+Route::post('/noticias/registrar', [NoticiasController::class, 'registrar']
+)->middleware(['auth', 'verified'])->name('registrar_not');
+
+Route::get('noticias/editar/{id}', [NoticiasController::class, 'form_edicion']
+)->middleware(['auth', 'verified'])->name('editar_not');
+
+Route::post('noticias/editar/{id}', [NoticiasController::class, 'editar']
+)->middleware(['auth', 'verified'])->name('editar_noticia');
+
+Route::get('noticias/eliminar/{id}', [NoticiasController::class, 'eliminar']
+)->middleware(['auth', 'verified'])->name('eliminar_not');
+
+
 //inscritos
 Route::get('/inscritos/listado', [InscritosController::class,'index']
 )->middleware(['auth', 'verified'])->name('listado_inscritos');
