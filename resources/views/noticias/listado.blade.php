@@ -10,6 +10,7 @@
 
 @section('content')
 <h1>Bienvenido a noticias</h1>
+<h3>soy desarrollador</h3>
 @stop
 
 @section('css')

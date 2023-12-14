@@ -342,14 +342,14 @@ return [
 
         ],
 
-        ['header' => 'Etiquetas'],
+        ['header' => 'Mas servicios'],
         [
-            'text'       => 'importante',
+            'text'       => 'Lugares',
             'icon_color' => 'red',
             'url'        => '#',
         ],
         [
-            'text'       => 'Peligro',
+            'text'       => 'Mis Juegos',
             'icon_color' => 'yellow',
             'url'        => '#',
         ],
