@@ -1,20 +1,14 @@
-
-
 @extends('adminlte::page')
 
 @section('title', 'Inicio')
 
 @section('content_header')
     <h1>Udenar Deportes</h1>
-    
 @stop
 
 @section('content')
-<p>Este contenido es publico</p>
+<h1>PRUEBA UDENAR DEPORTES</h1>
 
-@role('admin')
-<p>Solo lo va a ver el rol admin</p>
-@endrole
 @stop
 
 @section('css')
