@@ -32,7 +32,7 @@
                         <a href="{{route('editar_eve', $e->codevento)}}" class="btn btn-primary"> <i class="fas fa-edit"></i></a>
                         <a href="{{route('eliminar_eve', $e->codevento)}}" class="btn btn-danger" onclick="eliminarEvento(event, '{{route('eliminar_eve', $e->codevento)}}')"><i class="fas fa-trash"></i></a>
                         @endrole
-                        <a href="{{route('editar_eve', $e->codevento)}}" class="btn btn-success"> Incribirme</a>
+                        <a href="{{route('inscribir_eve', $e->codevento)}}" class="btn btn-success"> Incribirme</a>
                     </div>
                 </div>
             </div>

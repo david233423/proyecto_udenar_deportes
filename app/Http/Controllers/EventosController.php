@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Events;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Redirect;
 
 class EventosController extends Controller
 {
@@ -79,4 +80,47 @@ class EventosController extends Controller
 
         return redirect()->route('listado_eventos');
     }
+
+    public function inscribirse($id)
+    {
+        // Recuperar el evento por su ID
+        $event = Events::find($id);
+
+        // Verificar si el evento existe
+        if (!$event) {
+            abort(404); // O manejar de alguna manera que el evento no existe
+        }
+
+        // Resto del código para mostrar la vista con el formulario de inscripción
+        return view('eventos.form_inscripcion', ['event' => $event]);
+    }
+
+public function guardarInscripcion(Request $request)
+{
+    // Validación de datos del formulario
+    $request->validate([
+        'codigo' => 'required|string|max:255',
+        'carrera' => 'required|string|max:255',
+        'semestre' => 'required|string|max:255',
+        'numero_celular' => 'required|string|max:255',
+    ]);
+
+    // Guardar los datos directamente en la base de datos
+    $inscripcion = [
+        'codigo' => $request->input('codigo'),
+        'carrera' => $request->input('carrera'),
+        'semestre' => $request->input('semestre'),
+        'numero_celular' => $request->input('numero_celular'),
+        // Agrega otros campos según sea necesario
+    ];
+
+    
+    \DB::table('inscripciones')->insert($inscripcion);
+
+    // Redirigir al listado de inscritos
+    return Redirect::route('listado_inscritos');
+}
+
+
+    
 }

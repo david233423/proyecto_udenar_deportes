@@ -277,7 +277,7 @@
 @stop
 
 @role('admin')
-<p>ADMIN</p>
+<h2 style="text-align: center; font-family: Arial, sans-serif; color: #4CAF50; font-size: 30px;">Administrador</h2>
 @endrole
 
 @section('css')
