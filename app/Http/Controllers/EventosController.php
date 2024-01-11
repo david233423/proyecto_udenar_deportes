@@ -21,7 +21,6 @@ class EventosController extends Controller
 
     public function registrar(Request $request){
         $validator = Validator::make($request->all(), [
-            'cod_evento' => 'required|string',
             'nom_evento' => 'required|string',
             'fecha_evento' => 'required|date',
             'hora_evento' => 'required|date_format:H:i',
@@ -34,7 +33,6 @@ class EventosController extends Controller
         }
 
         $eventos = new Events();
-        $eventos->codevento = $request->input('cod_evento');
         $eventos->nomevento = $request->input('nom_evento');
         $eventos->fecha = $request->input('fecha_evento');
         $eventos->hora = $request->input('hora_evento');
@@ -104,6 +102,14 @@ public function guardarInscripcion(Request $request)
         'semestre' => 'required|string|max:255',
         'numero_celular' => 'required|string|max:255',
     ]);
+    $eventoId = $request->route('id');
+
+     // Validar que el evento exista
+     $event = Events::find($eventoId);
+     if (!$event) {
+         abort(404); // O manejar de alguna manera que el evento no existe
+     }
+
 
     // Guardar los datos directamente en la base de datos
     $inscripcion = [
@@ -111,12 +117,17 @@ public function guardarInscripcion(Request $request)
         'carrera' => $request->input('carrera'),
         'semestre' => $request->input('semestre'),
         'numero_celular' => $request->input('numero_celular'),
-        // Agrega otros campos según sea necesario
+        'user_id' => auth()->id(),  
+        'evento_codevento' => $event->id,        // Agrega otros campos según sea necesario
     ];
 
     
-    \DB::table('inscripciones')->insert($inscripcion);
-
+    try {
+        \DB::table('inscripciones')->insert($inscripcion);
+    } catch (\Exception $e) {
+        \Log::error($e->getMessage());
+        return redirect()->back()->withInput()->withErrors(['error' => 'Error al guardar la inscripción']);
+    }
     // Redirigir al listado de inscritos
     return Redirect::route('listado_inscritos');
 }

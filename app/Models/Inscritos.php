@@ -19,12 +19,17 @@ class Inscritos extends Model
     protected $table = 'inscripciones';
 
     public function eventos(){
-        return $this->belongsToMany(Eventos::class, 'inscripciones_eventos');
+        return $this->belongsToMany(Events::class, 'inscripciones_eventos');
     }
-
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function eve()
+    {
+        return $this->belongsTo(Events::class, 'evento_codevento');
+    }
+
 }

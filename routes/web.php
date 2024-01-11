@@ -81,8 +81,9 @@ Route::get('/inscritos/listado', [InscritosController::class,'index']
 Route::get('eventos/inscribir/{id}', [EventosController::class, 'inscribirse']
 )->middleware(['auth', 'verified'])->name('inscribir_eve'); 
 
-Route::post('/eventos/inscribir/guardar', [EventosController::class, 'guardarInscripcion']
+Route::post('/eventos/inscribir/guardar/{id}', [EventosController::class, 'guardarInscripcion']
 )->name('guardar_inscripcion')->middleware(['auth','verified']);
+
 
 
 require __DIR__.'/auth.php';

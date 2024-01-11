@@ -20,7 +20,12 @@ return new class extends Migration
             $table->string('semestre');
             $table->string('numero_celular');
             $table->timestamps();
+            $table->unsignedBigInteger('evento_codevento');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('evento_codevento')->references('id')->on('eventos')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
+        
     }
 
     /**

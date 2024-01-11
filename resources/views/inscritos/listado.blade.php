@@ -17,6 +17,8 @@
                 <th>Carrera</th>
                 <th>Semestre</th>
                 <th>Número de Celular</th>
+                <th>Juego</th>
+
                 {{-- Agrega otras columnas según sea necesario --}}
             </tr>
         </thead>
@@ -25,12 +27,17 @@
                 <tr>
                     <td>{{ $inscripcion->id }}</td>
                     <td>
-                        {{ optional($inscripcion->user)->name}}
+                        {{ $inscripcion->user->name}}
                     </td>
                     <td>{{ $inscripcion->codigo }}</td>
                     <td>{{ $inscripcion->carrera }}</td>
                     <td>{{ $inscripcion->semestre }}</td>
                     <td>{{ $inscripcion->numero_celular }}</td>
+                    <td>
+                     @if ($inscripcion->eve)
+                       {{ $inscripcion->eve->nomevento }}
+                     @endif
+                    </td>
                     {{-- Agrega otras columnas según sea necesario --}}
                 </tr>
             @endforeach

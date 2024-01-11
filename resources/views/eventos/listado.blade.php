@@ -24,15 +24,14 @@
                 <div class="col-md-8">
                     <div class="card-body">
                         <h5 class="card-title">{{ $e->nomevento }} Organizador: {{ $e->user->name }}</h5>
-                        <p class="card-text">{{$e->codevento}}</p>
                         <p class="card-text">{{$e->fecha}}</p>
                         <p class="card-text">{{$e->hora}}</p>
                         <p class="card-text">{{$e->lugar}}</p>
                         @role('admin')
-                        <a href="{{route('editar_eve', $e->codevento)}}" class="btn btn-primary"> <i class="fas fa-edit"></i></a>
-                        <a href="{{route('eliminar_eve', $e->codevento)}}" class="btn btn-danger" onclick="eliminarEvento(event, '{{route('eliminar_eve', $e->codevento)}}')"><i class="fas fa-trash"></i></a>
+                        <a href="{{route('editar_eve', $e->id)}}" class="btn btn-primary"> <i class="fas fa-edit"></i></a>
+                        <a href="{{route('eliminar_eve', $e->id)}}" class="btn btn-danger" onclick="eliminarEvento(event, '{{route('eliminar_eve', $e->id)}}')"><i class="fas fa-trash"></i></a>
                         @endrole
-                        <a href="{{route('inscribir_eve', $e->codevento)}}" class="btn btn-success"> Incribirme</a>
+                        <a href="{{route('inscribir_eve', $e->id)}}" class="btn btn-success"> Incribirme</a>
                     </div>
                 </div>
             </div>
