@@ -10,10 +10,7 @@
 @section('content')
 <form action="{{url('/eventos/registrar')}}" method="POST" enctype="multipart/form-data">
         @csrf
-        <div class="mb-3">
-            <label for="cod_evento" class="form-label">Código Evento</label>
-            <input type="text" class="form-control" id="cod_evento"  name="cod_evento" >
-        </div>
+       
         <div class="mb-3">
             <label for="nom_evento" class="form-label">Nombre evento</label>
             <input type="text" class="form-control" id="nom_evento" name="nom_evento">
